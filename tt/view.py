@@ -24,7 +24,7 @@ class DatabaseFrame(Frame):
 		Label(self, text = '连接数据库：').grid(row=1, stick=W, pady=10)
 		Entry(self, textvariable=self.database_name).grid(row=1, column=1, stick=E)
 		Button(self,text="选择",command=self.select).grid(row=1,column=2)
-		bt = Button(self, text='连接',command=self.conn).grid(row=3, column=1, stick=E, pady=10)
+		bt = Button(self, text='连接',command=self.conn)
 		bt.bind('<Return>',self.conn)
 		bt.focus_set()
 		bt.grid(row=3, column=1, stick=E, pady=10)
@@ -34,7 +34,7 @@ class DatabaseFrame(Frame):
 		self.database_name.set(self.database)
 		print("connect to " + self.database)
 	
-	def conn(self):
+	def conn(self,event):
 		#dn = self.database_name.get()
 		#tn = self.table_name.get()
 		#global table
@@ -81,13 +81,15 @@ class selecttableFrame(Frame): # 继承Frame类
 	def createPage(self):
 		#Label(self, text='').pack()
 		Label(self, text = '选择表名：').grid(row=1, stick=W, pady=10)
-		Entry(self, textvariable=self.selecttable_name).grid(row=1, column=1, stick=E)
-		bt = Button(self,text="确定",command=self.selecttable).grid(row=2,column=2)
+		en = Entry(self, textvariable=self.selecttable_name)
+		en.focus_set()
+		en.grid(row=1, column=1, stick=E)
+		bt = Button(self,text="确定",command=self.selecttable)
 		bt.bind('<Return>',self.selecttable)
-		bt.focus_set()
+		#bt.focus_set()
 		bt.grid(row=3, column=1, stick=E, pady=10)
 		
-	def selecttable(self):
+	def selecttable(self,event):
 		global selecttablename
 		selecttablename = self.selecttable_name.get()
 		#print(selecttablename)
